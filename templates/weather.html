@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Courgette&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pastel Weather App</title>
+    <style>
+        body {
+            font-family: 'Courgette', cursive;
+            background-color: #f0e6ef;
+            color: #e18aaa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h1, h2 {
+            font-family: 'Pacifico', cursive;
+        }
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .home-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+        input[type="text"] {
+            padding: 10px;
+            border: 2px solid #d3bcd4;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #fc8eac;
+            cursor: pointer;
+            color: white;
+            font-family: 'Pacifico', cursive;
+        }
+        .weather-info {
+            margin-top: 20px;
+        }
+        .weather-icon img {
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="{{ url_for('static', filename='images/pink-cosmos.png') }}" alt="Weather Icon" class="title-icon">
+        <h1>My Weather App</h1>
+        {% if not weather %}
+        <form method="POST">
+            <input type="text" name="city" placeholder="Enter city name" required>
+            <br>
+            <button type="submit">Get Weather</button>
+        </form>
+        {% else %}
+        <a href="/"><img src="{{ url_for('static', filename='images/home.png') }}" alt="Home" class="home-icon"></a>
+        <div class="weather-info">
+            <h2>{{ weather.city }}</h2>
+            <p>Temperature: {{ weather.temperature }}°C</p>
+            <p>Description: {{ weather.description }}</p>
+            <div class="weather-icon">
+                <img src="{{ url_for('static', filename='images/' + weather.icon) }}" alt="Weather Icon">
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
