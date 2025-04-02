@@ -3,7 +3,7 @@ import requests
 
 app = Flask(__name__)
 
-API_KEY = '95b5107ee934b93d900052ae29f494c9'
+API_KEY = ''
 
 weather_icon_map = {
     'sunny': 'sunny.png',
